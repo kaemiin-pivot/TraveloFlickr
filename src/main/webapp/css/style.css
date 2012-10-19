@@ -27,22 +27,27 @@ body {
   background-size: 100%;
 
 }
+
 /*topBar*/
-#topBar {
-	width:100%;
-	height:36px;
-	background-color: #000;
-	-moz-box-shadow: 0px 0px 5px #333333;
-    -webkit-box-shadow: 0px 0px 5px #333333;
-    -o-box-shadow: 0px 0px 5px #333333;
-    box-shadow: 0px 0px 5px #333333;
+
+.top-bar {
+  height: 36px;
+  line-height: 36px;
+  z-index: 99;
+  background-color: black;
+  -moz-box-shadow: 0px 0px 5px #333333;
+  -webkit-box-shadow: 0px 0px 5px #333;
+  -o-box-shadow: 0px 0px 5px #333333;
+  box-shadow: 0px 0px 5px #333;
 }
+
 #logo {
 	position: absolute;
 	top:8px;
 	left:50%;
 	margin:0 0 0 -63px;
 }
+
 .powerBy {
 	position: absolute;
 	top:10px;
@@ -51,29 +56,32 @@ body {
 	font-size:14px;
 }
 
-/*container*/
-#container {
-	width:720px;
-	margin:160px auto 0 auto;
+.row {
+  height:60px;
+  margin-bottom: 40px;
 }
-#container h1 {
-   font-size:28px;
-   font-weight:bold;
-   color:#000;
-   margin:0 0 30px 45px;
+
+.columns {
+  padding: 0px;
+  height: 100%;
 }
-.spotWrapper {
-   width:630px;
-   height:65px;
-   padding: 0px 45px;
+
+.spotIcon {
    background: url(../images/pinDefault.png) no-repeat;
-   background-position: left 14px;
-   margin-bottom: 40px;
+   background-position: 70% center;
+}
+
+.firstRow {
+  margin-top: 125px;
+  font-size: 28px;
+  font-weight: bold;
+  color: black;
+  height:30px;
 }
 
 input[type="text"].spotField {
-  width: 630px;
-  height:65px;
+  width: 100%;
+  height: 100%;
   padding:0px 20px 0 20px;
   font-size: 24px;
   color:#000;
@@ -88,10 +96,14 @@ input[type="text"].spotField {
   border: none;
 }
 
+.arrowDown {
+  margin:7px auto 0 auto;
+  display: block;
+}
+
 .spotField_new {
-  width: 630px;
-  height:65px;
-  padding:0px 20px 0 20px;
+  width: 100%;
+  height: 100%;
   font-size: 24px;
   color:#000;
   -moz-box-shadow: 0px 0px 5px #333333;
@@ -105,37 +117,27 @@ input[type="text"].spotField {
   border-style: dashed;
   border-width: 2px;
   cursor: pointer;
+  padding-left: 30px;
+  padding-top: 10px;
   background: url(../images/spotNew-bg.png) repeat;
 }
 
-.spotWrapper_new {
-   width:630px;
-   height:65px;
-   padding:0px 45px;
-   margin-bottom: 40px;
-}
 .spotField_new img {
-  float:left;
-  margin:15px 0 0 0;
-  width:34px;
-  height:34px;
+  float: left;
+  margin: 0 0 0 0;
+  width: 34px;
+  height: 34px;
 }
+
 .spotField_new p {
-  float:left;
-  margin:18px 0 0 20px;
-}
-.arrowDown {
-  width:64px;
-  height:45px;
-  margin:0 auto 40px auto;
-  display: block;
+  float: left;
+  margin-left: 20px;
+  margin-top: 5px;
 }
 
 .sendButton {
-  width:630px;
-  height:65px;
-  margin:20px 0 0 45px;
-  padding:0px 20px 0 20px;
+  height: 100%;
+  width: 100%;
   font-size: 24px;
   color:#FFF;
   background-color: #E9851E;
@@ -155,5 +157,4 @@ input[type="text"].spotField {
 .orange {
  color:#E9851E;
 }
-
 

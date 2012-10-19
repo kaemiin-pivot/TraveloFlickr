@@ -19,7 +19,6 @@
   <link rel="stylesheet" href="stylesheets/foundation.min.css">
   <link rel="stylesheet" href="stylesheets/app.css">
   <link rel="stylesheet" type="text/css" href="css/style.css" />
-
   <script src="javascripts/modernizr.foundation.js"></script>
 
   <!-- IE Fix for HTML5 Tags -->
@@ -40,8 +39,6 @@
   
   <script src="javascripts/jquery.foundation.orbit.js"></script>
   
-  <script src="javascripts/jquery.foundation.navigation.js"></script>
-  
   <script src="javascripts/jquery.foundation.buttons.js"></script>
   
   <script src="javascripts/jquery.foundation.tabs.js"></script>
@@ -57,10 +54,13 @@
   <script src="javascripts/jquery.foundation.topbar.js"></script>
   
   -->
+
+  
   
   <!-- Included JS Files (Compressed) -->
   <script src="javascripts/jquery.js"></script>
   <script src="javascripts/foundation.min.js"></script>
+  <script src="javascripts/jquery.foundation.navigation.js"></script>
   
   <!-- Initialize JS Plugins -->
   <script src="javascripts/app.js"></script>
@@ -109,11 +109,18 @@ var locationIdx = 1;
 
 function addNewLocation(){
       
+        
+
     var id = location + (++locationIdx),
-        html = '<div class="spotWrapper"><input id="'+ id 
-             +'" class="spotField" placeholder="Enter a place " type="text" /> </div>';
+        html = '<div class="row display">'
+             +   '<div class="one columns offset-by-one spotIcon"></div>'
+             +   '<div class="eight columns">'
+             +      '<input id="'+ id +'" class="spotField" placeholder="Enter a place " type="text" />'
+             +   '</div>'
+             +   '<div class="two columns"></div>'
+             + '</div>'
       
-	  $('.spotWrappers').append(html);
+    $('.spotWrappers').append(html);
 
     registerAutoComplete(id);
 }
@@ -128,47 +135,62 @@ function getPhotos(){
 }
 
 $(document).ready(function(){
-
     
-    $( ".spotWrapper_new" ).click(addNewLocation);
+     $( ".spotField_new" ).click(addNewLocation);
 
-    $( "#getPhotosBtn" ).click(getPhotos);
+     $( "#getPhotosBtn" ).click(getPhotos);
 
-    registerAutoComplete('location1');
+     registerAutoComplete('location1');
+
+    $(document).foundationTopBar();
 });
 
 </script>
 </head>
 <body>
 
-	<div id="topBar">
-		<img id="logo" src="images/logo.png" />
-		<p class="powerBy">Powered by <span class="orange">Mr.Travelo</span></p>
-	</div>
+    <nav class="top-bar">
+      <ul>
+        <li class="center"><img id="logo" src="images/logo.png" /></li>
+      </ul>
+    </nav>
 
-	<div id="container">
+    <div class="row display firstRow">
+      <div class="eight columns centered">
+          Take me to these places
+      </div>
+    </div>
 
-		<h1>Take me to these places</h1>
-	
-			<div class="spotWrappers">
-				<div class="spotWrapper">
-					<input id="location1" class="spotField" placeholder="Enter a place " type="text" />
-		        </div>
-	        </div>
+    <div class="spotWrappers">
 
-			<img class="arrowDown" src="images/arrowDown.png" />
+        <div class="row display">
+          <div class="one columns offset-by-one spotIcon"></div>
+          <div class="eight columns">
+             <input id="location1" class="spotField" placeholder="Enter a place " type="text" />
+          </div>
+          <div class="two columns"></div>
+        </div>
 
-			<div class="spotWrapper_new">
-			  <div class="spotField_new">
-			  	<img class="arrowDown" src="images/add.png" />
-			  	<p>Add places</p>
-			  </div>
-			</div>
+    </div>
 
-	    <input type="button" id="getPhotosBtn" class="sendButton" value="Let’s Go" />
-		
-	</div>
+    <div class="row display">
+      <div class="eight columns centered">
+        <img class="arrowDown" src="images/arrowDown.png" />
+      </div>
+    </div>
+
+    <div class="row display">
+        <div class="eight columns centered spotField_new">
+          <img class="arrowDown" src="images/add.png">
+          <p>Add places</p>
+        </div>
+    </div>
+
+    <div class="row display">
+        <div class="eight columns centered">
+          <input type="button" id="getPhotosBtn" class="sendButton" value="Let’s Go" />
+        </div>
+    </div>
 
 </body>
 </html>
-
