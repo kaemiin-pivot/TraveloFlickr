@@ -8,7 +8,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="apple-mobile-web-app-capable" content="yes" />
-<title>TraveloFlickr | Explore The World</title>
+<title>TraveloDreamr | Explore The World</title>
 
 <!-- Included CSS Files (Uncompressed) -->
   <!--
@@ -1047,9 +1047,14 @@ function send2(){
   
   aryResult = [];
 
+  isNoPhotos = true;
+
   generateResult();
 
-  console.log(aryResult);  
+  if(isNoPhotos){
+     alert('please pick some photos');
+     return;
+  }
 
   if (('localStorage' in window) && window['localStorage'] !== null) { 
 
@@ -1060,7 +1065,7 @@ function send2(){
 
 }
 
-var workingTypes, workingPhotos, aryResult;
+var workingTypes, workingPhotos, aryResult, isNoPhotos;
 
 function generateResult(){
 
@@ -1083,11 +1088,13 @@ function loopTypes(key, item){
 
     item.photos.each(loopPhotos);
 
-    workingTypes[workingTypes.length] = {typeid: key,  photos: workingPhotos};
+    workingTypes[workingTypes.length] = {type: typeId2Word(key),  photos: workingPhotos};
 
 }
 
 function loopPhotos(item){
+
+    isNoPhotos = false;
 
     workingPhotos[workingPhotos.length] = item;
 }
@@ -1125,6 +1132,40 @@ function getSearchWord(searchText, searchType) {
   
   return rt;
 }
+
+function typeId2Word(typeId){
+
+    var rt = '', typeId = parseInt(typeId.substring(5), 10);
+
+  switch(typeId) {
+    // hotel
+    case 1:
+      rt = 'hotel';
+      break;
+    // food
+    case 2:
+      rt = 'food';
+      break;
+    // entertain
+    case 3:
+      rt = 'entertain';
+      break;
+    // building
+    case 4:
+      rt = 'building';
+      break;
+    // shopping
+    case 5:
+      rt = 'shopping';
+      break;
+    // scene
+    case 6:
+      rt = 'scene';
+      break;
+  }
+  
+  return rt;
+};
 
 function search(searchType) {
 
@@ -1184,8 +1225,6 @@ function generateDataStructure(searchText, searchType){
 }
 
 function addSelectedPhoto(isAdd, searchText, searchType, photo){
-    
-
 
       var location = objResult.get('keyword-' + searchText);
 
@@ -1199,7 +1238,6 @@ function addSelectedPhoto(isAdd, searchText, searchType, photo){
 
       }
       else {
-
 
          photos.remove(photo);
       }
