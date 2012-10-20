@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+<html>
+<head>
+<meta charset="utf-8" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<title>TraveloFlickr | Explore The World</title>
+
+<!-- Included CSS Files (Uncompressed) -->
+  <!--
+  <link rel="stylesheet" href="stylesheets/foundation.css">
+  -->
+
+  <!-- Included CSS Files (Compressed) -->
+  <link rel="stylesheet" href="stylesheets/foundation.min.css">
+  <link rel="stylesheet" href="stylesheets/app.css">
+  <link rel="stylesheet" type="text/css" href="css/style.css" />
+  <script src="javascripts/modernizr.foundation.js"></script>
+
+  <!-- IE Fix for HTML5 Tags -->
+  <!--[if lt IE 9]>
+    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+
+<!-- Included JS Files (Uncompressed) -->
+  <!--
+
+  <script src="javascripts/jquery.js"></script>
+
+  <script src="javascripts/jquery.foundation.mediaQueryToggle.js"></script>
+
+  <script src="javascripts/jquery.foundation.forms.js"></script>
+
+  <script src="javascripts/jquery.foundation.reveal.js"></script>
+
+  <script src="javascripts/jquery.foundation.orbit.js"></script>
+
+  <script src="javascripts/jquery.foundation.buttons.js"></script>
+
+  <script src="javascripts/jquery.foundation.tabs.js"></script>
+
+  <script src="javascripts/jquery.foundation.tooltips.js"></script>
+
+  <script src="javascripts/jquery.foundation.accordion.js"></script>
+
+  <script src="javascripts/jquery.placeholder.js"></script>
+
+  <script src="javascripts/jquery.foundation.alerts.js"></script>
+
+  <script src="javascripts/jquery.foundation.topbar.js"></script>
+
+  -->
+
+
+
+  <!-- Included JS Files (Compressed) -->
+  <script src="javascripts/jquery.js"></script>
+  <script src="javascripts/foundation.min.js"></script>
+  <script src="javascripts/jquery.foundation.navigation.js"></script>
+
+  <!-- Initialize JS Plugins -->
+  <script src="javascripts/app.js"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?sensor=false&libraries=places"></script>
+
+<script>
+
+$(document).ready(function(){
+
+  $(document).foundationTopBar();
+
+  loadPhotos();
+
+  //TODO
+});
+
+function loadPhotos() {
+  console.log('here1');
+/*
+   $.getJSON("http://api.flickr.com/services/feeds/photos_public.gne?jsoncallback=?",
+            {
+              tags: "sunset",
+              tagmode: "any",
+              format: "json"
+            },
+            function(data) {
+              console.log('here2');
+              $.each(data.items, function(i, item) {
+                console.log(item);
+                console.log(item.media.m);
+                if (i == 3) return false;
+              });
+              //TODO
+            } );
+            */
+
+            $.getJSON("http://api.flickr.com/services/rest/?method=flickr.photos.search&nojsoncallback=1",
+
+                    {
+                      api_key: "c258d8ae4c29bb74da198c6ac3874671",
+                      text: "hello world",
+                      per_page: 20,
+                      format: "json"
+                    },
+                    function(data) {
+
+                      console.log('here3');
+
+                      console.log(data);
+
+                      $.each(data.photos.photo, function(i, item) {
+                        console.log(item);
+                        console.log(constructImageURL_s(item));
+                        console.log(constructImageURL_m(item));
+                        console.log(constructImageURL(item));
+                        //TODO
+                       });
+                    }
+
+              );
+
+/*
+  $.ajax({
+        url: "http://api.flickr.com/services/rest/?" +
+             "method=flickr.photos.search&" +
+             "api_key=90485e931f687a9b9c2a66bf58a3861a&" +
+             "text=hello%20world&" +
+             "safe_search=1&" +  // 1 is "safe"
+             "content_type=1&" +  // 1 is "photos only"
+             "sort=relevance&" +  // another good one is "interestingness-desc"
+             "per_page=20&format=json",
+       // cache: false,
+        success: function(data) {
+          console.log('here');
+          //TODO
+        }
+      });
+*/
+      /*
+        }).done(function(msg) {
+                               console.log(msg);
+                               console.log('here');
+                               $.loadStorage('test', '1233');
+                               //$.loadStorage('result', msg);
+                              // if (localStorage) {
+                              //   localStorage.setItem('result', msg);
+                              // }
+                              });*/
+}
+/*
+function constructImageURL_s(photo) {
+
+      return "http://farm" + photo.farm +
+          ".static.flickr.com/" + photo.server +
+                "/" + photo.id +
+                      "_" + photo.secret +
+                            "_s.jpg";
+}
+*/
+</script>
+</head>
+<body class="edit">
+
+    <nav class="top-bar">
+      <ul>
+        <li class="center"><img id="logo" src="images/logo.png" /></li>
+      </ul>
+    </nav>
+
+    <div class="spotWrappers">
+
+    </div>
+
+    <div class="eight columns centered">
+          <input type="button" id="exportBtn" class="sendButton" value="Let’s GoxxxXXXXOOOO" />
+        </div>
+    </div>
+
+</body>
+</html>
