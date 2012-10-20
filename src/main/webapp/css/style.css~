@@ -105,21 +105,6 @@ input[type="text"].spotField {
   display: block;
 }
 
-.spotField-delete {
-  width:47px;
-  height:47px;
-  position: absolute;
-  margin-top:-65px;
-  margin-left:575px;
-  background: url(../images/spotField-delete.png) no-repeat;
-  display: none;
-  cursor: pointer;
-}
-
-.spotWrapper:hover .spotField-delete , .spotField-delete:hover {
-  display: block;
-}
-
 .spotField_new {
   width: 100%;
   height: 100%;

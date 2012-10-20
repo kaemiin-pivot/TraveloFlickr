@@ -14,7 +14,7 @@
   <!--
   <link rel="stylesheet" href="stylesheets/foundation.css">
   -->
-  
+
   <!-- Included CSS Files (Compressed) -->
   <link rel="stylesheet" href="stylesheets/foundation.min.css">
   <link rel="stylesheet" href="stylesheets/app.css">
@@ -28,40 +28,40 @@
 
 <!-- Included JS Files (Uncompressed) -->
   <!--
-  
+
   <script src="javascripts/jquery.js"></script>
-  
+
   <script src="javascripts/jquery.foundation.mediaQueryToggle.js"></script>
-  
+
   <script src="javascripts/jquery.foundation.forms.js"></script>
-  
+
   <script src="javascripts/jquery.foundation.reveal.js"></script>
-  
+
   <script src="javascripts/jquery.foundation.orbit.js"></script>
-  
+
   <script src="javascripts/jquery.foundation.buttons.js"></script>
-  
+
   <script src="javascripts/jquery.foundation.tabs.js"></script>
-  
+
   <script src="javascripts/jquery.foundation.tooltips.js"></script>
-  
+
   <script src="javascripts/jquery.foundation.accordion.js"></script>
-  
+
   <script src="javascripts/jquery.placeholder.js"></script>
-  
+
   <script src="javascripts/jquery.foundation.alerts.js"></script>
-  
+
   <script src="javascripts/jquery.foundation.topbar.js"></script>
-  
+
   -->
 
-  
-  
+
+
   <!-- Included JS Files (Compressed) -->
   <script src="javascripts/jquery.js"></script>
   <script src="javascripts/foundation.min.js"></script>
   <script src="javascripts/jquery.foundation.navigation.js"></script>
-  
+
   <!-- Initialize JS Plugins -->
   <script src="javascripts/app.js"></script>
   <script src="https://maps.googleapis.com/maps/api/js?sensor=false&libraries=places"></script>
@@ -97,45 +97,51 @@ function registerAutoComplete(pId) {
 
             // place.geometry.viewport
             // place.geometry.location
-            // place.name 
+            // place.name
             // place.address_components //is array
             // place.address_components[0].short_name
 
         });
-        
+
 }
 
 var locationIdx = 1;
 
 function addNewLocation(){
-      
-        
 
-    var id = location + (++locationIdx),
-        html = '<div class="row display">'
+  //   var id = location + (++locationIdx),
+    var id = ++locationIdx,
+        html = '<div id="location_' + id + '"  class="row display">'
              +   '<div class="one columns offset-by-one spotIcon"></div>'
              +   '<div class="eight columns">'
-             +      '<input id="'+ id +'" class="spotField" placeholder="Enter a place " type="text" />'
+             +      '<input id="'+ id +'" class="spotField" placeholder="Enter a place " type="text" name="location"  />'
+             +   '<div id="delete_' + id + '" class="spotField-delete"></div>'
              +   '</div>'
              +   '<div class="two columns"></div>'
              + '</div>'
-      
+
     $('.spotWrappers').append(html);
+
+    $('#delete_' + id).click(function(){
+      console.log('here');
+      $('#location_' + id).remove();
+      //TODO
+      }).show();
 
     registerAutoComplete(id);
 }
 
 function getPhotos(){
-    
+
     for(var key in places){
-       
+
        //console.log(places[key]);
     }
 
 }
 
 $(document).ready(function(){
-    
+
      $( ".spotField_new" ).click(addNewLocation);
 
      $( "#getPhotosBtn" ).click(getPhotos);
@@ -157,7 +163,7 @@ $(document).ready(function(){
 
     <div class="row display firstRow">
       <div class="eight columns centered">
-          Take me to these places
+        <h1> Take me to these places</h1>
       </div>
     </div>
 
@@ -166,7 +172,7 @@ $(document).ready(function(){
         <div class="row display">
           <div class="one columns offset-by-one spotIcon"></div>
           <div class="eight columns">
-             <input id="location1" class="spotField" placeholder="Enter a place " type="text" />
+            <input id="location1" class="spotField" placeholder="Enter a place " type="text" name="location" />
           </div>
           <div class="two columns"></div>
         </div>
