@@ -116,50 +116,38 @@ function loadPhotos() {
                         console.log(constructImageURL_s(item));
                         console.log(constructImageURL_m(item));
                         console.log(constructImageURL(item));
+
+
+                        if(('localStorage' in window) && window['localStorage'] !== null) {
+                          console.log('here');
+                          localStorage.setItem('result',JSON.stringify(item));
+                        }
+
+
+                        $("<img class='img'/>").attr('src', constructImageURL_s(item)).click(function() {
+                          console.log('here33');
+
+                          if ($(this).hasClass('selected')) {
+                            $(this).removeClass('selected');
+                          }
+                          else {
+                            $(this).addClass('selected');
+                          }
+                          //TODO
+                          }).appendTo('.locationWrappers .images');
                         //TODO
-                       });
+                        });
+
+                    });
+
+                    if(('localStorage' in window) && window['localStorage'] !== null) {
+                      var result = localStorage.getItem('result');
+                      console.log(result);
+                      console.log(constructImageURL_m(JSON.parse(result)));
                     }
 
-              );
-
-/*
-  $.ajax({
-        url: "http://api.flickr.com/services/rest/?" +
-             "method=flickr.photos.search&" +
-             "api_key=90485e931f687a9b9c2a66bf58a3861a&" +
-             "text=hello%20world&" +
-             "safe_search=1&" +  // 1 is "safe"
-             "content_type=1&" +  // 1 is "photos only"
-             "sort=relevance&" +  // another good one is "interestingness-desc"
-             "per_page=20&format=json",
-       // cache: false,
-        success: function(data) {
-          console.log('here');
-          //TODO
-        }
-      });
-*/
-      /*
-        }).done(function(msg) {
-                               console.log(msg);
-                               console.log('here');
-                               $.loadStorage('test', '1233');
-                               //$.loadStorage('result', msg);
-                              // if (localStorage) {
-                              //   localStorage.setItem('result', msg);
-                              // }
-                              });*/
 }
-/*
-function constructImageURL_s(photo) {
 
-      return "http://farm" + photo.farm +
-          ".static.flickr.com/" + photo.server +
-                "/" + photo.id +
-                      "_" + photo.secret +
-                            "_s.jpg";
-}
-*/
 </script>
 </head>
 <body class="edit">
@@ -170,8 +158,10 @@ function constructImageURL_s(photo) {
       </ul>
     </nav>
 
-    <div class="spotWrappers">
+    <div class="locationWrappers">
+      <div class="images">
 
+      </div>
     </div>
 
     <div class="eight columns centered">

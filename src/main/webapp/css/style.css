@@ -159,6 +159,10 @@ input[type="text"].spotField {
 
 /*color*/
 .orange {
- color:#E9851E;
+  color:#E9851E;
 }
 
+.images .img {
+  border: 1px solid white;
+  cursor: pointer;
+}
