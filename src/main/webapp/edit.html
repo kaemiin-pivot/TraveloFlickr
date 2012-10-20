@@ -69,6 +69,8 @@
 
 <script>
 
+var arySearch;
+
 $(document).ready(function(){
 
   $(document).foundationTopBar();
@@ -82,7 +84,10 @@ $(document).ready(function(){
 
   $("#xxx").click(send2);
   
+  arySearch = JSON.parse(localStorage.getItem('locations'));
+
   search(1);
+
 });
 
 function send2() {
@@ -102,7 +107,7 @@ function search(searchType) {
   $('#photoList').empty();
 
   for (var idx = 0, len = arySearch.length; idx < len; idx++) {
-    loadPhotos(idx, arySearch[idx].text, searchType);
+    loadPhotos(idx, arySearch[idx].keyword, searchType);
   }
 }
 
