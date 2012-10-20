@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+<html>
+<head>
+<meta charset="utf-8" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<title>TraveloFlickr | Explore The World</title>
+
+<!-- Included CSS Files (Uncompressed) -->
+  <!--
+  <link rel="stylesheet" href="stylesheets/foundation.css">
+  -->
+
+  <!-- Included CSS Files (Compressed) -->
+  <link rel="stylesheet" href="stylesheets/foundation.min.css">
+  <link rel="stylesheet" href="stylesheets/app.css">
+  <link rel="stylesheet" type="text/css" href="css/style.css" />
+  <script src="javascripts/modernizr.foundation.js"></script>
+
+  <!-- IE Fix for HTML5 Tags -->
+  <!--[if lt IE 9]>
+    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+
+<!-- Included JS Files (Uncompressed) -->
+  <!--
+
+  <script src="javascripts/jquery.js"></script>
+
+  <script src="javascripts/jquery.foundation.mediaQueryToggle.js"></script>
+
+  <script src="javascripts/jquery.foundation.forms.js"></script>
+
+  <script src="javascripts/jquery.foundation.reveal.js"></script>
+
+  <script src="javascripts/jquery.foundation.orbit.js"></script>
+
+  <script src="javascripts/jquery.foundation.buttons.js"></script>
+
+  <script src="javascripts/jquery.foundation.tabs.js"></script>
+
+  <script src="javascripts/jquery.foundation.tooltips.js"></script>
+
+  <script src="javascripts/jquery.foundation.accordion.js"></script>
+
+  <script src="javascripts/jquery.placeholder.js"></script>
+
+  <script src="javascripts/jquery.foundation.alerts.js"></script>
+
+  <script src="javascripts/jquery.foundation.topbar.js"></script>
+
+  -->
+
+
+
+  <!-- Included JS Files (Compressed) -->
+  <script src="javascripts/jquery.js"></script>
+  <script src="javascripts/foundation.min.js"></script>
+  <script src="javascripts/jquery.foundation.navigation.js"></script>
+
+  <!-- Initialize JS Plugins -->
+  <script src="javascripts/app.js"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?sensor=false&libraries=places"></script>
+
+<script>
+
+$(document).ready(function(){
+
+  $(document).foundationTopBar();
+
+  loadPhotos();
+
+  //TODO
+});
+
+function loadPhotos() {
+
+/*
+   $.getJSON("http://api.flickr.com/services/feeds/photos_public.gne?jsoncallback=?",
+            {
+              tags: "sunset",
+              tagmode: "any",
+              format: "json"
+            },
+            function(data) {
+              console.log('here2');
+              $.each(data.items, function(i, item) {
+                console.log(item);
+                console.log(item.media.m);
+                if (i == 3) return false;
+              });
+              //TODO
+            } );
+            */
+
+            // $.getJSON("http://api.flickr.com/services/rest/?method=flickr.places.find&nojsoncallback=1",
+
+            //         {
+            //           api_key: "c258d8ae4c29bb74da198c6ac3874671",
+            //           query : '日月潭',
+            //           format: "json"
+            //         },
+
+            //         log);
+
+             // $.getJSON("http://api.flickr.com/services/rest/?method=flickr.places.tagsForPlace&nojsoncallback=1",
+
+             //        {
+             //          api_key: "c258d8ae4c29bb74da198c6ac3874671",
+             //          woe_id : '28759880',
+             //          format: "json"
+             //        },
+
+             //        log);
+
+             // 下面這個試不出來
+             // $.getJSON("http://api.flickr.com/services/rest/?method=flickr.places.placesForTags&nojsoncallback=1",
+
+             //        {
+             //          api_key: "c258d8ae4c29bb74da198c6ac3874671",
+             //          // Valid place type IDs are : 22: neighbourhood, 7: locality, 8: region, 12: country, 29: continent
+             //          place_type_id: 8,
+             //          woe_id : '28759880',
+             //          format: "json"
+             //        },
+
+             //        log);
+
+              // $.getJSON("http://api.flickr.com/services/rest/?method=flickr.tags.getRelated&nojsoncallback=1",
+
+              //       {
+              //         api_key: "c258d8ae4c29bb74da198c6ac3874671",
+              //         tag: 'London', //日月潭
+              //         format: "json"
+              //       },
+
+              //       log);
+
+              $.getJSON("http://api.flickr.com/services/rest/?method=flickr.tags.getClusters&nojsoncallback=1",
+
+                    {
+                      api_key: "c258d8ae4c29bb74da198c6ac3874671",
+                      tag: '日月潭',
+                      format: "json"
+                    },
+
+                    log);
+
+}
+
+function log(data){
+    console.log(data);
+}
+
+</script>
+</head>
+<body>
+
+</body>
+</html>

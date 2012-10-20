@@ -64,48 +64,37 @@
 
   <!-- Initialize JS Plugins -->
   <script src="javascripts/app.js"></script>
-  <script src="https://maps.googleapis.com/maps/api/js?sensor=false&libraries=places"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
 
 <script>
 
 var places = [];
 
+var geocoder;
+      
+function codeAddress(place) {
+
+      geocoder.geocode( { 'address': place.keyword}, function(results, status) {
+
+      if (status == google.maps.GeocoderStatus.OK) {
+        
+          place.position = results[0].geometry.location;
+      } 
+    });
+}
+
 function registerAutoComplete(pId) {
-          var input = document.getElementById('location_' + pId),
 
-            autocomplete = new google.maps.places.Autocomplete(input),
+          var input = document.getElementById('location_' + pId);
 
-            types = ['geocode']; // [], ['establishment'], ['geocode']);
+          $('#location_' + pId).keydown(function() {
 
-        autocomplete.setTypes(types);
+                 setTimeout(function() {
+                      
+                        places[pId] = {keyword: input.value};
+                 }, 50);
 
-        google.maps.event.addListener(autocomplete, 'place_changed', function(){
-
-            var place = autocomplete.getPlace();
-
-            if (!place.geometry) {
-              // Inform the user that the place was not found and return.
-              input.value = '';
-
-              return;
-            }
-
-            places[pId] = place;
-
-            //console.log(pId);
-
-            //console.log(place);
-
-            //console.log(places);
-
-            // place.geometry.viewport
-            // place.geometry.location
-            // place.name
-            // place.address_components //is array
-            // place.address_components[0].short_name
-
-        });
-
+          });
 }
 
 var locationIdx = 1;
@@ -129,6 +118,8 @@ function addNewLocation(){
            delete places[id];
       })
 
+    geocoder = new google.maps.Geocoder();
+
     registerAutoComplete(id);
 }
 
@@ -149,11 +140,19 @@ function getPhotos(){
           for(var idx = 0, len = places.length; idx < len; idx++){
               
               if(places[idx]){
+                 
                  temp[temp.length] = places[idx];
+
+                 codeAddress(temp[temp.length - 1]);
               }
           }
 
-          localStorage.setItem('locations', JSON.stringify(temp));
+          
+          setTimeout(function() {
+                      
+                        localStorage.setItem('locations', JSON.stringify(temp));
+
+                 }, 1000);
       }
     }
 
@@ -176,6 +175,8 @@ $(document).ready(function(){
      registerAutoComplete('1');
 
     $(document).foundationTopBar();
+
+    geocoder = new google.maps.Geocoder();
 });
 
 </script>
