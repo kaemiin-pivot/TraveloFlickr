@@ -1,3 +1,7 @@
+var arySearch = [{text: '日月潭'}, {text: '阿里山'}, {text: '大元'}];
+var aryResult = [];
+var arySelectedPhotos = [];
+
 (function ($, window, undefined) {
   'use strict';
 

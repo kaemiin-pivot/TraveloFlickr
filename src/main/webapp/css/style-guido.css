@@ -1,0 +1,390 @@
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;	
+  vertical-align: baseline;
+  font-family: Arial, Helvetica,"微軟正黑體","蘋果儷中黑","新細明體";
+}
+
+body {
+  width:100%;
+  height:100%;
+  background: url(../images/back_ground.jpg) no-repeat;
+  background-size: 100%;
+  background-attachment: fixed;
+}
+
+/*topBar*/
+#topBar {
+	width:100%;
+	height:36px;
+	position: fixed;
+	top:0;
+	z-index: 99;
+	background-color: #000;
+	-moz-box-shadow: 0px 0px 5px #333333;
+    -webkit-box-shadow: 0px 0px 5px #333333;
+    -o-box-shadow: 0px 0px 5px #333333;
+    box-shadow: 0px 0px 5px #333333;
+}
+#logo {
+	position: absolute;
+	top:8px;
+	left:50%;
+	margin:0 0 0 -63px;
+}
+.powerBy {
+	position: absolute;
+	top:10px;
+	right:15px;
+	color:#FFF;
+	font-size:14px;
+}
+.powerBy a {
+  text-decoration: none;
+  color:#E9851E;
+}
+.powerBy a:visit {
+  text-decoration: none;
+}
+.powerBy a:hover {
+  text-decoration: underline;
+}
+/*container*/
+#container {
+	width:720px;
+	margin:160px auto 0 auto;
+}
+#container h1 {
+   font-size:34px;
+   font-weight:bold;
+   color:#000;
+   margin:0 0 20px 45px;
+}
+
+/*step1*/
+.spotWrapper {
+   width:650px;
+   height:65px;
+   padding:0 45px 40px 45px;
+   background: url(../image/pinDefault.png) no-repeat;
+   background-position: left 12px;
+}
+.spotField {
+  width:590px;
+  height:65px;
+  padding:0px 20px 0 20px;
+  font-size: 24px;
+  color:#000;
+  background-color: #FFF;
+  -moz-box-shadow: 0px 0px 5px #333333;
+  -webkit-box-shadow: 0px 0px 5px #333333;
+  -o-box-shadow: 0px 0px 5px #333333;
+  box-shadow: 0px 0px 5px #333333;
+  filter:alpha(opacity=80);
+  opacity: .8;
+  -moz-opacity:.8;
+  border: none;
+}
+.spotField-delete {
+  width:47px;
+  height:47px;
+  position: absolute;
+  margin-top:-55px;
+  margin-left:575px;
+  background: url(../image/spotField-delete.png) no-repeat;	
+  display: none;
+  cursor: pointer;
+}
+.spotWrapper:hover .spotField-delete , .spotField-delete:hover {
+  display: block;	
+}
+.spotField_new {
+  width:590px;
+  height:65px;
+  padding:0px 20px 0 20px;
+  font-size: 24px;
+  color:#000;
+  -moz-box-shadow: 0px 0px 5px #333333;
+  -webkit-box-shadow: 0px 0px 5px #333333;
+  -o-box-shadow: 0px 0px 5px #333333;
+  box-shadow: 0px 0px 5px #333333;
+  filter:alpha(opacity=80);
+  opacity: .8;
+  -moz-opacity:.8;
+  border-color: #FFF;
+  border-style: dashed;
+  border-width: 2px;
+  cursor: pointer;
+  background: url(../image/spotNew-bg.png) repeat;
+}
+.spotWrapper_new {
+   width:650px;
+   height:65px;
+   padding:0 45px 40px 45px;
+}
+.spotField_new img {
+  float:left;
+  margin:15px 0 0 0;
+  width:34px;
+  height:34px;
+}
+.spotField_new p {
+  float:left;
+  margin:18px 0 0 20px;
+}
+.arrowDown {
+  width:64px;
+  height:45px;
+  margin:0 auto 40px auto;
+  display: block;
+}
+#send {
+  width:630px;
+  height:65px;
+  margin:20px 0 0 45px;
+  padding:0px 20px 0 20px;
+  font-size: 24px;
+  color:#FFF;
+  background-color: #E9851E;
+  -moz-box-shadow: 0px 0px 5px #333333;
+  -webkit-box-shadow: 0px 0px 5px #333333;
+  -o-box-shadow: 0px 0px 5px #333333;
+  box-shadow: 0px 0px 5px #333333;
+  filter:alpha(opacity=80);
+  opacity: .80;
+  -moz-opacity:80;
+  border: none;	
+  cursor: pointer;
+}
+#send2 {
+  width:630px;
+  height:65px;
+  margin:50px 0 0 130px;
+  padding:0px 20px 0 20px;
+  font-size: 24px;
+  color:#FFF;
+  background-color: #E9851E;
+  -moz-box-shadow: 0px 0px 5px #333333;
+  -webkit-box-shadow: 0px 0px 5px #333333;
+  -o-box-shadow: 0px 0px 5px #333333;
+  box-shadow: 0px 0px 5px #333333;
+  filter:alpha(opacity=80);
+  opacity: .80;
+  -moz-opacity:80;
+  border: none;	
+  cursor: pointer;
+}
+
+/*step2*/
+#container-step2 {
+	width:910px;
+	margin:99px auto 50px auto;
+}
+
+.iconWrapper {
+   width:794px;
+   height:88px;
+   padding: 0 58px 0 58px;
+}
+.icons {
+   float: left;
+   width:128px;
+   height:88px;
+   text-align: center;
+   margin:0 5px 0 0;
+}
+.icons-last {
+   float: left;
+   width:128px;
+   height:88px;
+   text-align: center;
+}
+.image-wrapper {
+	width:800px;
+	height:140px;
+	margin:50px 0 0 0;
+	padding: 12px 58px 0 58px;
+	background-color: #FFF;
+	-moz-box-shadow: 0px 0px 5px #333333;
+	-webkit-box-shadow: 0px 0px 5px #333333;
+	-o-box-shadow: 0px 0px 5px #333333;
+	box-shadow: 0px 0px 5px #333333;
+}
+.image-title {
+	width:auto;
+	height: 25px;
+	background-color: #E0801E;
+	color:#FFF;
+	font-size:18px;
+	font-weight: bold;
+	position: absolute;
+	margin-top:-42px;
+	margin-left:-58px;
+	padding:5px 24px 0 24px;
+}
+.images1 {
+   float: left;
+   width:128px;
+   height:128px;
+   margin:0 5px 0 0;
+   cursor: pointer;
+}
+.hover1 {
+   width:128px;
+   height:128px;
+   background: url(../images/hover_hotel.png) repeat;
+   position: absolute;
+   display: none;
+}
+.images2 {
+   float: left;
+   width:128px;
+   height:128px;
+   margin:0 5px 0 0;
+   cursor: pointer;
+}
+.hover2 {
+   width:128px;
+   height:128px;
+   background: url(../images/hover_food.png) repeat;
+   position: absolute;
+   display: none;
+}
+.images3 {
+   float: left;
+   width:128px;
+   height:128px;
+   margin:0 5px 0 0;
+   cursor: pointer;
+}
+.hover3 {
+   width:128px;
+   height:128px;
+   background: url(../images/hover_entertain.png) repeat;
+   position: absolute;
+   display: none;
+}
+.images4 {
+   float: left;
+   width:128px;
+   height:128px;
+   margin:0 5px 0 0;
+   cursor: pointer;
+}
+.hover4 {
+   width:128px;
+   height:128px;
+   background: url(../images/hover_building.png) repeat;
+   position: absolute;
+   display: none;
+}
+.images5 {
+   float: left;
+   width:128px;
+   height:128px;
+   margin:0 5px 0 0;
+   cursor: pointer;
+}
+.hover5 {
+   width:128px;
+   height:128px;
+   background: url(../images/hover_shopping.png) repeat;
+   position: absolute;
+   display: none;
+}
+.images6 {
+   float: left;
+   width:128px;
+   height:128px;
+   cursor: pointer;
+}
+.hover6 {
+   width:128px;
+   height:128px;
+   background: url(../images/hover_scene.png) repeat;
+   position: absolute;
+   display: none;
+}
+.select {
+   width:128px;
+   height:128px;
+   background: url(../images/select.png) repeat;
+   position: absolute;
+}
+.delete {
+   width:128px;
+   height:128px;
+   background: url(../images/delete.png) repeat;
+   position: absolute;
+   display: none;
+}
+.select:hover .delete , .delete:hover {
+   display: block;	
+}
+.images1:hover .hover1 , .hover1:hover {
+   display: block;
+}
+.images2:hover .hover2 , .hover2:hover {
+   display: block;
+}
+.images3:hover .hover3 , .hover3:hover {
+   display: block;
+}
+.images4:hover .hover4 , .hover4:hover {
+   display: block;
+}
+.images5:hover .hover5 , .hover5:hover {
+   display: block;
+}
+.images6:hover .hover6 , .hover6:hover {
+   display: block;
+}
+.nav-prev {                                 
+   width:20px;
+   height:30px;
+   margin-left:-38px;
+   margin-top:48px;
+   position: absolute;
+   background: url(../images/prev.png) no-repeat;	
+   cursor: pointer;     
+}
+.nav-next {
+   width:20px;
+   height:30px;
+   margin-left:815px;
+   margin-top:48px;
+   position: absolute;
+   background: url(../images/next.png) no-repeat;
+   cursor: pointer; 
+}
+.nav-prev:hover {                                 
+   background: url(../images/prev2.png) no-repeat;	    
+}
+.nav-next:hover {
+   background: url(../images/next2.png) no-repeat;
+}
+
+
+
+
+/*color*/
+.orange {
+ color:#E9851E;
+}
+
+

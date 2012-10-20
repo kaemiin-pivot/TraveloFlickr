@@ -10,13 +10,20 @@
  * 
  */
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> page 2
 (function($){
 	
 	$.fn.bxSlider = function(options){		
 				
 		var defaults = {
 			mode: 'horizontal',									// 'horizontal', 'vertical', 'fade'
+<<<<<<< HEAD
+=======
+			childSelector: '',  					      // jQuery selector - elements to be used as slides
+>>>>>>> page 2
 			infiniteLoop: true,									// true, false - display first slide after last
 			hideControlOnEnd: false,						// true, false - if true, will hide 'next' control on last slide and 'prev' control on first
 			controls: true,											// true, false - previous and next controls
@@ -64,7 +71,11 @@
 			onFirstSlide: function(){},					// function(currentSlideNumber, totalSlideQty, currentSlideHtmlObject) - advanced use only! see the tutorial here: http://bxslider.com/custom-pager
 			onNextSlide: function(){},					// function(currentSlideNumber, totalSlideQty, currentSlideHtmlObject) - advanced use only! see the tutorial here: http://bxslider.com/custom-pager
 			onPrevSlide: function(){},					// function(currentSlideNumber, totalSlideQty, currentSlideHtmlObject) - advanced use only! see the tutorial here: http://bxslider.com/custom-pager
+<<<<<<< HEAD
 			buildPager: null										// function(slideIndex, slideHtmlObject){ return string; } - advanced use only! see the tutorial here: http://bxslider.com/custom-pager
+=======
+			buildPager: null,										// function(slideIndex, slideHtmlObject){ return string; } - advanced use only! see the tutorial here: http://bxslider.com/custom-pager
+>>>>>>> page 2
 		}
 		
 		var options = $.extend(defaults, options);
@@ -278,7 +289,11 @@
 						currentSlide = 0;
 						// if specified, hide the control on the last slide
 						if(options.hideControlOnEnd){
+<<<<<<< HEAD
 							$('.bx-prev', $outerWrapper).hide();
+=======
+							$outerWrapper.children('.bx-prev').hide();
+>>>>>>> page 2
 						}
 					}
 					checkEndControls();
@@ -385,9 +400,15 @@
 		}
 		
 		/**
+<<<<<<< HEAD
 		 * Stop the slideshow
 		 */		
 		this.stopShow = function(changeText){
+=======
+		 * Suspend the slideshow
+		 */		
+		this.suspendShow = function(changeText){
+>>>>>>> page 2
 			clearInterval(interval);
 			// check if changeText argument is supplied
 			if(typeof(changeText) == 'undefined'){
@@ -395,26 +416,62 @@
 			}
 			if(changeText && options.autoControls){
 				$autoControls.html($startContent).removeClass('stop').addClass('start');
+<<<<<<< HEAD
 				autoPlaying = false;
+=======
+>>>>>>> page 2
 			}
+		}
+		
+		/**
+<<<<<<< HEAD
+		 * Start the slideshow
+		 */		
+		this.startShow = function(changeText){
+=======
+		 * Restart the suspended slideshow
+		 */		
+		this.restartShow = function(changeText){
+>>>>>>> page 2
+			// check if changeText argument is supplied
+			if(typeof(changeText) == 'undefined'){
+				var changeText = true;
+			}
+<<<<<<< HEAD
+			setAutoInterval();
+			if(changeText && options.autoControls){
+				$autoControls.html($stopContent).removeClass('start').addClass('stop');
+				autoPlaying = true;
+=======
+			if(autoPlaying){
+				setAutoInterval();
+			}
+			if(changeText && options.autoControls){
+				$autoControls.html($stopContent).removeClass('start').addClass('stop');
+>>>>>>> page 2
+			}
+		}
+		
+		/**
+<<<<<<< HEAD
+=======
+		 * Stop the slideshow permanently
+		 */		
+		this.stopShow = function(changeText){
+			autoPlaying = false;
+			this.suspendShow(changeText);
 		}
 		
 		/**
 		 * Start the slideshow
 		 */		
 		this.startShow = function(changeText){
-			// check if changeText argument is supplied
-			if(typeof(changeText) == 'undefined'){
-				var changeText = true;
-			}
-			setAutoInterval();
-			if(changeText && options.autoControls){
-				$autoControls.html($stopContent).removeClass('start').addClass('stop');
-				autoPlaying = true;
-			}
+			autoPlaying = true;
+			this.restartShow(changeText);
 		}
 		
 		/**
+>>>>>>> page 2
 		 * Stops the ticker
 		 */		
 		this.stopTicker = function(changeText){
@@ -485,9 +542,15 @@
 			// base = this;
 			$parent = $(this);
 			$origElement = $parent.clone();
+<<<<<<< HEAD
 			$children = $parent.children();
 			$outerWrapper = '';
 			$firstChild = $parent.children(':first');
+=======
+			$children = $parent.children(options.childSelector);
+			$outerWrapper = '';
+			$firstChild = $parent.children(options.childSelector + ':first');
+>>>>>>> page 2
 			childrenWidth = $firstChild.width();
 			childrenMaxWidth = 0;
 			childrenOuterWidth = $firstChild.outerWidth();
@@ -550,7 +613,11 @@
 			}
 						
 			// check to show controls
+<<<<<<< HEAD
 			if(options.controls && !options.ticker){
+=======
+			if(options.controls && !options.ticker && $children.length > 1){
+>>>>>>> page 2
 				setControlsVars();
 			}
 						
@@ -563,6 +630,10 @@
 				// check if show should auto start
 				if(options.autoStart){
 					// check if autostart should delay
+<<<<<<< HEAD
+=======
+					autoPlaying = false; // prevent playing during the deplay
+>>>>>>> page 2
 					setTimeout(function(){
 						base.startShow(true);
 					}, options.autoDelay);
@@ -597,6 +668,7 @@
 			// stop the auto show
 			clearInterval(interval);
 			// remove any controls / pagers that have been appended
+<<<<<<< HEAD
 			$('.bx-next, .bx-prev, .bx-pager, .bx-auto', $outerWrapper).remove();
 			// unwrap all bx-wrappers
 			$parent.unwrap().unwrap().removeAttr('style');
@@ -604,6 +676,15 @@
 			$parent.children().removeAttr('style').not('.pager').remove();
 			// remove any childrent that were appended
 			$children.removeClass('pager');
+=======
+			$outerWrapper.children('.bx-next, .bx-prev, .bx-pager, .bx-auto').remove();
+			// unwrap all bx-wrappers
+			$parent.unwrap().unwrap().removeAttr('style');
+			// remove any styles that were appended
+			$parent.children(options.childSelector).removeAttr('style').not('.bx-child').remove();
+			// remove any childrent that were appended
+			$children.removeClass('bx-child');
+>>>>>>> page 2
 			
 		}
 		
@@ -632,15 +713,25 @@
 				.css({
 				  width: '999999px',
 				  position: 'relative',
+<<<<<<< HEAD
 					left: '-'+(origLeft)+'px'
 				});
 				$parent.children().css({
+=======
+					left: '-'+(options.infiniteLoop ? origLeft : 0)+'px'
+				});
+				$parent.children(options.childSelector).css({
+>>>>>>> page 2
 					width: childrenWidth,
 				  'float': 'left',
 				  listStyle: 'none'
 				});					
 				$outerWrapper = $parent.parent().parent();
+<<<<<<< HEAD
 				$children.addClass('pager');
+=======
+				$children.addClass('bx-child');
+>>>>>>> page 2
 			// CSS for vertical mode
 			}else if(options.mode == 'vertical'){
 				// wrap the <ul> in div that acts as a window and make the <ul> uber tall
@@ -652,19 +743,31 @@
 				  position: 'relative',
 					top: '-'+(origTop)+'px'
 				});
+<<<<<<< HEAD
 				$parent.children().css({
+=======
+				$parent.children(options.childSelector).css({
+>>>>>>> page 2
 				  listStyle: 'none',
 					height: childrenMaxHeight
 				});					
 				$outerWrapper = $parent.parent().parent();
+<<<<<<< HEAD
 				$children.addClass('pager');
+=======
+				$children.addClass('bx-child');
+>>>>>>> page 2
 			// CSS for fade mode
 			}else if(options.mode == 'fade'){
 				// wrap the <ul> in div that acts as a window
 				$parent
 				.wrap('<div class="'+options.wrapperClass+'" style="width:'+childrenMaxWidth+'px; position:relative;"></div>')
 				.wrap('<div class="bx-window" style="height:'+childrenMaxHeight+'px; width:'+childrenMaxWidth+'px; position:relative; overflow:hidden;"></div>');
+<<<<<<< HEAD
 				$parent.children().css({
+=======
+				$parent.children(options.childSelector).css({
+>>>>>>> page 2
 				  listStyle: 'none',
 				  position: 'absolute',
 					top: 0,
@@ -686,8 +789,12 @@
 		 */		
 		function setChildrenLayout(){			
 			// lays out children for horizontal or vertical modes
+<<<<<<< HEAD
 			if(options.mode == 'horizontal' || options.mode == 'vertical'){
 								
+=======
+			if( (options.mode == 'horizontal' || options.mode == 'vertical') && options.infiniteLoop) {
+>>>>>>> page 2
 				// get the children behind
 				var $prependedChildren = getArraySample($children, 0, options.moveSlideQty, 'backward');
 				
@@ -748,6 +855,11 @@
 		 */		
 		function setAutoInterval(){
 			if(options.auto){
+<<<<<<< HEAD
+=======
+				clearInterval(interval); // clear any existing interval
+				
+>>>>>>> page 2
 				// finite loop
 				if(!options.infiniteLoop){
 					if(options.autoDirection == 'next'){
@@ -792,7 +904,11 @@
 				options.tickerSpeed *= 10;
 												
 				// get the total width of the original show
+<<<<<<< HEAD
 				$('.pager', $outerWrapper).each(function(index) {
+=======
+				$('.bx-child', $outerWrapper).each(function(index) {
+>>>>>>> page 2
 				  origShowWidth += $(this).width();
 					origShowHeight += $(this).height();
 				});
@@ -887,6 +1003,7 @@
 		 */		
 		function setAutoHover(){
 			// hover over the slider window
+<<<<<<< HEAD
 			$outerWrapper.find('.bx-window').hover(function() {
 				if(autoPlaying){
 					base.stopShow(false);
@@ -894,6 +1011,15 @@
 			}, function() {
 				if(autoPlaying){
 					base.startShow(false);
+=======
+			$outerWrapper.children('.bx-window').hover(function() {
+				if(autoPlaying){
+					base.suspendShow(false);
+				}
+			}, function() {
+				if(autoPlaying){
+					base.restartShow(false);
+>>>>>>> page 2
 				}
 			});
 		}
@@ -1044,7 +1170,11 @@
 					$outerWrapper.append($pagerContainer);
 				}
 				// cache the pager element
+<<<<<<< HEAD
 				$pager = $('.bx-pager', $outerWrapper);
+=======
+				$pager = $outerWrapper.children('.bx-pager');
+>>>>>>> page 2
 			}
 			$pager.children().click(function() {
 				// only if pager is full mode
@@ -1073,14 +1203,22 @@
 				if(options.captionsSelector){
 					$(options.captionsSelector).html(caption);
 				}else{
+<<<<<<< HEAD
 					$('.bx-captions', $outerWrapper).html(caption);
+=======
+					$outerWrapper.children('.bx-captions').html(caption);
+>>>>>>> page 2
 				}
 			}else{
 				// if user supplied a selector
 				if(options.captionsSelector){
 					$(options.captionsSelector).html('&nbsp;');
 				}else{
+<<<<<<< HEAD
 					$('.bx-captions', $outerWrapper).html('&nbsp;');
+=======
+					$outerWrapper.children('.bx-captions').html('&nbsp;');
+>>>>>>> page 2
 				}				
 			}
 		}
@@ -1112,7 +1250,11 @@
 				$(options.autoControlsSelector).append($autoControls);
 			}else{
 				$outerWrapper.append('<div class="bx-auto"></div>');
+<<<<<<< HEAD
 				$('.bx-auto', $outerWrapper).html($autoControls);
+=======
+				$outerWrapper.children('.bx-auto').html($autoControls);
+>>>>>>> page 2
 			}
 						
 			// click start control
@@ -1142,6 +1284,7 @@
 			if(!options.infiniteLoop && options.hideControlOnEnd){
 				// check previous
 				if(currentSlide == firstSlide){
+<<<<<<< HEAD
 					$('.bx-prev', $outerWrapper).hide();				
 				}else{
 					$('.bx-prev', $outerWrapper).show();
@@ -1151,6 +1294,18 @@
 					$('.bx-next', $outerWrapper).hide();
 				}else{
 					$('.bx-next', $outerWrapper).show();
+=======
+					$outerWrapper.children('.bx-prev').hide();				
+				}else{
+					$outerWrapper.children('.bx-prev').show();
+				}
+				// check next
+				var lastPossibleSlide = Math.floor(lastSlide/options.displaySlideQty) * options.displaySlideQty;
+        if(currentSlide >= lastPossibleSlide){
+					$outerWrapper.children('.bx-next').hide();
+				}else{
+					$outerWrapper.children('.bx-next').show();
+>>>>>>> page 2
 				}
 			}
 		}
@@ -1159,12 +1314,17 @@
 		 * Returns the left offset of the slide from the parent container
 		 */		
 		function getSlidePosition(number, side){			
+<<<<<<< HEAD
 			if(side == 'left'){
 				var position = $('.pager', $outerWrapper).eq(number).position().left;
 			}else if(side == 'top'){
 				var position = $('.pager', $outerWrapper).eq(number).position().top;
 			}
 			return position;
+=======
+			var $slidePosition = $parent.find(' > .bx-child').eq(number).position();
+			return (side == 'left') ? $slidePosition.left : $slidePosition.top;
+>>>>>>> page 2
 		}
 		
 		/**
@@ -1257,4 +1417,7 @@
 
 		
 })(jQuery);
+<<<<<<< HEAD
 
+=======
+>>>>>>> page 2

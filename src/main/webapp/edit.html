@@ -16,9 +16,9 @@
   -->
 
   <!-- Included CSS Files (Compressed) -->
-  <link rel="stylesheet" href="stylesheets/foundation.min.css">
-  <link rel="stylesheet" href="stylesheets/app.css">
-  <link rel="stylesheet" type="text/css" href="css/style.css" />
+  <!-- <link rel="stylesheet" href="stylesheets/foundation.min.css">
+  <link rel="stylesheet" href="stylesheets/app.css"> -->
+  <link rel="stylesheet" type="text/css" href="css/style-guido.css" />
   <script src="javascripts/modernizr.foundation.js"></script>
 
   <!-- IE Fix for HTML5 Tags -->
@@ -61,7 +61,8 @@
   <script src="javascripts/jquery.js"></script>
   <script src="javascripts/foundation.min.js"></script>
   <script src="javascripts/jquery.foundation.navigation.js"></script>
-
+  <script src="javascripts/jquery.bxSlider.js"></script>
+  
   <!-- Initialize JS Plugins -->
   <script src="javascripts/app.js"></script>
   <script src="https://maps.googleapis.com/maps/api/js?sensor=false&libraries=places"></script>
@@ -72,13 +73,74 @@ $(document).ready(function(){
 
   $(document).foundationTopBar();
 
-  loadPhotos();
+  $("#hotel").click(function() { search(1); });
+  $("#food").click(function() { search(2); });
+  $("#entertain").click(function() { search(3); });
+  $("#building").click(function() { search(4); });
+  $("#shopping").click(function() { search(5); });
+  $("#scene").click(function() { search(6); });
 
-  //TODO
+  $("#xxx").click(send2);
+  
+  search(1);
 });
 
-function loadPhotos() {
-  console.log('here1');
+function send2() {
+  console.log('=== submit ===');
+  console.log(arySelectedPhotos);
+  
+  for (var idx = 0, len = aryResult.length; idx < len; idx++) {
+    aryResult[idx].photos = arySelectedPhotos[idx];
+  }
+  console.log(aryResult);
+}
+
+function search(searchType) {
+
+  aryResult = [];
+  arySelectedPhotos = [];
+  $('#photoList').empty();
+
+  for (var idx = 0, len = arySearch.length; idx < len; idx++) {
+    loadPhotos(idx, arySearch[idx].text, searchType);
+  }
+}
+
+function getSearchWord(searchText, searchType) {
+
+  var rt = '';
+  switch(searchType) {
+    // hotel
+    case 1:
+      rt = searchText + ', 飯店';
+      break;
+    // food
+    case 2:
+      rt = searchText + ', 美食';
+      break;
+    // entertain
+    case 3:
+      rt = searchText + ', 景點';
+      break;
+    // building
+    case 4:
+      rt = searchText + ', 建築';
+      break;
+    // shopping
+    case 5:
+      rt = searchText + ', 百貨公司';
+      break;
+    // scene
+    case 6:
+      rt = searchText + ', scene';
+      break;
+  }
+  console.log(rt);
+  return rt;
+}
+
+function loadPhotos(idx, searchText, searchType) {
+  
 /*
    $.getJSON("http://api.flickr.com/services/feeds/photos_public.gne?jsoncallback=?",
             {
@@ -101,31 +163,83 @@ function loadPhotos() {
 
                     {
                       api_key: "c258d8ae4c29bb74da198c6ac3874671",
-                      text: "hello world",
-                      per_page: 20,
-                      format: "json"
+                      format: "json",
+                      tags: getSearchWord(searchText, searchType),
+                      safe_search: 1,
+                      content_type: 1,
+                      sort: 'relevance',
+                      per_page: 42
                     },
                     function(data) {
 
-                      console.log('here3');
-
+                      console.log('=== data ===');
                       console.log(data);
 
+                      aryResult.push({keyword: searchText, location: searchText, type: searchType});
+
+                      // TODO
+                      var a = $('<div class="image-wrapper">' +
+                                  '<div class="image-title">' + searchText + '</div>' +
+                                  '<div id="nav-prev-' + idx + '" class="nav-prev"></div>' +
+                                  '<div id="nav-next-' + idx + '" class="nav-next"></div>' +
+                                  '<ul id="slider' + idx + '" class="multiple" style="width: 999999px; position: relative; left: -760px; ">' +
+                                  '</ul>' +
+                                '</div>');
+                      $('#photoList').append(a);
+
                       $.each(data.photos.photo, function(i, item) {
-                        console.log(item);
-                        console.log(constructImageURL_s(item));
-                        console.log(constructImageURL_m(item));
-                        console.log(constructImageURL(item));
+                        // console.log(item);
+                        // console.log(constructImageURL_s(item));
+                        // console.log(constructImageURL_m(item));
+                        // console.log(constructImageURL(item));
 
+                        // TODO
+                        // console.log(i);
+                        // console.log(item);
+                        
+                        var b = $('<li style="float: left; list-style: none; ">' +
+                                    '<div id="image-' + idx + '-' + i + '" class="images' + searchType + '">' +
+                                      '<div class="hover' + searchType + '"></div>' +
+                                      '<img src="' + constructImageURL_m(item) + '" width="128" height="128" />' +
+                                    '</div>' +
+                                  '</li>');
+                        $('#slider' + idx).append(b);
+                        $('#image-' + idx + '-' + i).click(function(e) {
+                          // set select / delete CSS
+                          if (e.length <= 0) return;
+                          console.log(e);
+                          var cn = e.currentTarget.childNodes[0].className;
+                          
+                          if (cn == 'select') {
+                            e.currentTarget.childNodes[0].className = 'hover' + searchType;
+                            e.currentTarget.childNodes[0].innerHTML = '';
+                          } else {
+                            e.currentTarget.childNodes[0].className = 'select';
+                            e.currentTarget.childNodes[0].innerHTML = '<div class="delete"></div>';
+                          }
 
+                          console.log(data.photos);
+                          console.log(e.currentTarget.id);
+                          var ary = e.currentTarget.id.split('-');
+                          var photoIndex = ary[2];
+                          console.log('=== uuu ===')
+                          console.log(ary);
+                          console.log(photoIndex);
+                          console.log(data.photos.photo[photoIndex]);
+
+                          // set params to page 3
+                          arySelectedPhotos[idx] = [];
+                          arySelectedPhotos[idx].push(data.photos.photo[photoIndex]);
+                          console.log(arySelectedPhotos);
+                        } ); 
+                        
                         if(('localStorage' in window) && window['localStorage'] !== null) {
-                          console.log('here');
+                          // console.log('here');
                           localStorage.setItem('result',JSON.stringify(item));
                         }
 
-
                         $("<img class='img'/>").attr('src', constructImageURL_s(item)).click(function() {
-                          console.log('here33');
+                          // console.log('here33');
 
                           if ($(this).hasClass('selected')) {
                             $(this).removeClass('selected');
@@ -138,36 +252,54 @@ function loadPhotos() {
                         //TODO
                         });
 
+                        // bxSlider 
+                        $('#slider' + idx).bxSlider({
+                          displaySlideQty: 6,
+                          moveSlideQty: 6,
+                          prevText: '',
+                          prevImage: 'images/prev.png',
+                          prevSelector: '#nav-prev-' + idx,
+                          nextText: '',
+                          nextImage: 'images/next.png',
+                          nextSelector: '#nav-next-' + idx
+                        });
+
                     });
 
                     if(('localStorage' in window) && window['localStorage'] !== null) {
                       var result = localStorage.getItem('result');
-                      console.log(result);
-                      console.log(constructImageURL_m(JSON.parse(result)));
+                      // console.log(result);
+                      // console.log(constructImageURL_m(JSON.parse(result)));
                     }
 
 }
 
 </script>
 </head>
-<body class="edit">
+<body>
 
-    <nav class="top-bar">
-      <ul>
-        <li class="center"><img id="logo" src="images/logo.png" /></li>
-      </ul>
-    </nav>
+<div id="topBar">
+<img id="logo" src="images/logo.png" />
+<!--<p class="powerBy">Powered by <a href="http://mrtravelo.com" target="_blank">Mr.Travelo</a></span></p>-->
+</div>
 
-    <div class="locationWrappers">
-      <div class="images">
+<div id="container-step2">
 
-      </div>
-    </div>
+<div class="iconWrapper">
+  <div id="hotel" class="icons"><img src="images/icon_hotel.png" /></div>
+  <div id="food" class="icons"><img src="images/icon_food.png" /></div>
+  <div id="entertain" class="icons"><img src="images/icon_entertain.png" /></div>
+  <div id="building" class="icons"><img src="images/icon_building.png" /></div>
+  <div id="shopping" class="icons"><img src="images/icon_shopping.png" /></div>
+  <div id="scene" class="icons-last"><img src="images/icon_scene.png" /></div>
+</div>
 
-    <div class="eight columns centered">
-          <input type="button" id="exportBtn" class="sendButton" value="Let’s GoxxxXXXXOOOO" />
-        </div>
-    </div>
+<div id="photoList"></div>
 
+<form>
+ <input type="submit" name="submit" value="OK! Take me to there" id="send2" action=send2>
+</form>
+
+</div>
 </body>
 </html>
