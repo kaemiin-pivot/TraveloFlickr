@@ -87,14 +87,14 @@
 
     for(var idx = 0, len = spots.length; idx < len; idx++) {
       spot = spots[idx];
-console.log(spot);
+
       if (spot) {
 
         box = $('<div class="box col1">').appendTo('#scroller');
 
         //box - title
         //console.log(spot.type);
-        spot_title = $('<div class="spot-title ' + getTitleImage(spot.type) + '"></div>').appendTo(box);
+        spot_title = $('<div class="spot-title ' + getTitleImage(spot.types[0].type) + '"></div>').appendTo(box);
 
         //box - left
         spot_left_1 = $('<img class="boxleft"/>').attr('src', constructImageURL(spot.types[0].photos[0])).appendTo(box);
