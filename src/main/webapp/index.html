@@ -125,8 +125,9 @@ function addNewLocation(){
     $('.spotWrappers').append(html);
 
     $('#delete_' + id).click(function(){
-      $('#input_' + id).remove();
-      }).show();
+           $('#input_' + id).remove();
+           delete places[id];
+      })
 
     registerAutoComplete(id);
 }
@@ -140,8 +141,19 @@ function getPhotos(){
 */
 
     if (places && places.length > 0) {
+
       if (('localStorage' in window) && window['localStorage'] !== null) {
-        localStorage.setItem('locations', JSON.stringify(places));
+
+          var temp = [];
+
+          for(var idx = 0, len = places.length; idx < len; idx++){
+              
+              if(places[idx]){
+                 temp[temp.length] = places[idx];
+              }
+          }
+
+          localStorage.setItem('locations', JSON.stringify(temp));
       }
     }
 

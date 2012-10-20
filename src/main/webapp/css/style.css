@@ -112,7 +112,6 @@ input[type="text"].spotField {
   margin-top:-65px;
   margin-left:575px;
   background: url(../images/spotField-delete.png) no-repeat;
-  display: none;
   cursor: pointer;
 }
 
