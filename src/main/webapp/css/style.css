@@ -170,13 +170,188 @@ input[type="text"].spotField {
   cursor: pointer;
 }
 
-
 /*color*/
 .orange {
   color:#E9851E;
 }
 
-.images .img {
-  border: 1px solid white;
-  cursor: pointer;
+.result {
+  background: url(../images/gallery-bg.jpg) repeat;
+  background-attachment: fixed;
 }
+
+#up04 #top-nav-wrapper {
+    width: 100%;
+    background: #fff;
+    position: fixed;
+    height: 36px;
+    -moz-box-shadow: #181818 0px 1px 4px;
+    -webkit-box-shadow: #181818 0px 1px 4px;
+    -o-box-shadow: #181818 0px 1px 4px;
+    box-shadow: #181818 0px 1px 4px;
+    top: 100px;
+    z-index: 101;
+}
+
+#up04 #top-nav-wrapper .list_carousel {
+    width: 1240px;
+    margin: 0 auto;
+    overflow: hidden;
+    position: relative;
+}
+
+#up04 #top-nav-wrapper .list_carousel #prev {
+    width: 35px;
+    height: 36px;
+    display: block;
+    text-indent: -9999px;
+    background: url(../images/up04-prev.png) 0 38px;
+    float: left;
+}
+
+#up04 #top-nav-wrapper .list_carousel #prev:hover {
+    background-position: 0 38px;
+}
+
+#up04 #top-nav-wrapper .list_carousel #next {
+    width: 35px;
+    height: 36px;
+    display: block;
+    text-indent: -9999px;
+    background: url(../images/up04-next.png) 0 38px;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+#up04 #top-nav-wrapper .list_carousel #next:hover {
+    background-position: 0 38px;
+}
+
+#up04 #top-nav-wrapper .list_carousel .disabled {
+    background-position: 0 0px!important;
+}
+
+#up04 #top-nav-wrapper .list_carousel #foo li {
+    float: left;
+    padding: 0 30px 0 0;
+    margin: 10px 0 0 0;
+    font-size: 14px;
+}
+
+#up04 #top-nav-wrapper .list_carousel #foo li a {
+    text-decoration: none;
+    color: #4d4d4d;
+    font-weight: bold;
+}
+
+#up04 #top-nav-wrapper .list_carousel #foo li a:hover {
+    color: #000;
+}
+
+#up04 #top-nav-wrapper .list_carousel #foo .topIndex a {
+    color: #eb861e;
+}
+
+#up04 #top-nav-wrapper .list_carousel #foo .day {
+    color: #eb861e;
+    font-weight: bold;
+}
+
+#up04 #top-nav-wrapper .list_carousel #foo .day a {
+        color:#EB861E !important;
+}
+
+#up04 #top-nav-wrapper .list_carousel #foo .day a:hover {
+        color:#F30 !important;
+}
+
+#up04 #wrapper-book {
+    margin: 100px auto 0 auto;
+}
+
+#wrapper-book .index-title {
+    position: absolute;
+    top: 40px;
+    left: 475px;
+    z-index: 4;
+    background: #fff;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -o-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -khtml-border-radius: 50%;
+    border-radius: 50%;
+    width: 92px;
+    height: 92px;
+}
+
+#wrapper-book .index-title p {
+    color: #eb861e;
+    font-weight: bold;
+    font-size:18px;
+    margin: 48px 0 0 0px;
+    line-height: 35px;
+    text-align: center;
+}
+
+#wrapper-book #scroller {
+    width: 100%;
+    padding: 0;
+    margin: 36px 0 0 0;
+    cursor: default;
+}
+
+.box {
+    float: left;
+    border: 1px solid #fff;
+}
+
+.col {
+  width: 618px;
+  height: 412px;
+  display: block;
+}
+
+.map-day {
+  width:618px;
+  height:414px;
+}
+
+.chapter-info p.chapter-main-title {
+  text-align: center;
+  font-size: 120%;
+  font-weight: bold;
+  color: #c48110;
+  padding: 20px 0;
+}
+
+.chapter-info h2 {
+  text-align: center;
+  font-size: 38px;
+  word-spacing: 0px;
+  font-weight:bold;
+}
+
+.chapter-info p.spot-name {
+  text-align: center;
+  padding: 16px 0 0 0;
+  font-size: 13px;
+  color: #333;
+  font-weight: bold;
+}
+
+.chapter-info p.summary {
+  padding: 66px 0 0 0;
+  font-size: 100%;
+  line-height: 30px;
+  color: #595A5C;
+  width:90%;
+  margin:0 auto;
+}
+
+.chapter-info .summary {
+  padding: 25px 0 0 0;
+}
+
+
