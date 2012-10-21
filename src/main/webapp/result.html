@@ -26,7 +26,7 @@
   -->
 
   <!-- Included CSS Files (Compressed) -->
-  <link rel="stylesheet" href="stylesheets/foundation.min.css">
+  <!-- <link rel="stylesheet" href="stylesheets/foundation.min.css"> -->
   <link rel="stylesheet" href="stylesheets/app.css">
   <link rel="stylesheet" type="text/css" href="css/style.css" />
   <script src="javascripts/modernizr.foundation.js"></script>
@@ -89,6 +89,7 @@
   $(document).foundationTopBar();
 
   var spots;
+  var tempPhotos = [];
 
   if (('localStorage' in window) && window['localStorage'] !== null) {
 
@@ -127,7 +128,7 @@
             break;
         }
 
-        var el = $('<div id="place-' + idx + '-types-' + idx2 + '" style="margin: 69px;">' +
+        var el = $('<div id="place-' + idx + '-types-' + idx2 + '" style="margin:-150px 69px 0 69px; max-height:1000px;">' +
                        '<div style="background-color: red; width: 137px; height: 137px; position: relative; top: 480px; left: 550px; ' +
                                    'z-index: 1; background: url(images/' +  typeName + '.png)">' +
                    '</div>');
@@ -164,42 +165,52 @@
                 break;
           }
 
+          tempPhotos.push(constructImageURL(photo));
+
           $('#place-' + idx + '-types-' + idx2).append(imageDiv);
 
         }
-
       }
-
-      
-
-      // if (spot) {
-
-      //   box = $('<div class="box col1">').appendTo('#scroller');
-
-      //   //box - title
-      //   //console.log(spot.type);
-      //   spot_title = $('<div class="spot-title ' + getTitleImage(spot.types[0].type) + '"></div>').appendTo(box);
-
-      //   //box - left
-      //   spot_left_1 = $('<img class="boxleft"/>').attr('src', constructImageURL(spot.types[0].photos[0])).appendTo(box);
-
-      //   //box - right
-      //   spot_right_1 = $('<img class="boxright"/>').attr('src', constructImageURL(spot.types[0].photos[1])).appendTo(box);
-
-      //   //box - left 2
-        // spot_left_2 = $('<div class="map-day" />').tinyMap({
-        //   center: spot.keyword,
-        //   mapTypeControl:false,
-        //   scaleControl:false,
-        //   scrollwheel:false,
-        //   zoom:16,
-        //   marker: [{addr: spot.keyword, text: '', icon: 'images/map-pins.png'}]
-        //   }).appendTo(box);
-
-      // }
     } // end of for
   }
 
+  console.log('xxx');
+  console.log(tempPhotos);
+  for (var idx = 0, len = tempPhotos.length; idx < len; idx++) {
+
+    if (idx > 4) return;
+    var div = '';
+    switch(idx) {
+      case 0:
+        div = '<div class="box col1" style="width:618px; height:412px; overflow: hidden;">' +
+                  '<p><a href="#"><img src="' + tempPhotos[idx] + '" width="618" height="412" /></a></p>' +
+              '</div>';
+        break;
+      case 1:
+        div = '<div class="box col2" style="width:308px; height:308px; overflow: hidden;">' +
+                  '<p><a href="#day1"><img src="' + tempPhotos[idx] + '" width="100%" height="100%"/>' +
+              '</div>';
+        break;
+      case 2:
+        div = '<div class="box col2" style="width:308px; height:308px; overflow: hidden;">' +
+                  '<p><a href="#day2"><img src="' + tempPhotos[idx] + '" width="100%" height="100%"/>' +
+              '</div>';
+        break;
+      case 3:
+        div = '<div class="box col2" style="width:308px; height:308px; overflow: hidden;">' +
+                  '<p><a href="#day3"><img src="' + tempPhotos[idx] + '" width="100%" height="100%"/>' +
+              '</div>';
+        break;
+      case 4:
+        div = '<div class="box col2" style="width:308px; height:308px; overflow: hidden;">' +
+                  '<p><a href="#day4"><img src="' + tempPhotos[idx] + '" width="100%" height="100%"/>' +
+              '</div>)';
+        break;
+    }
+    
+    $('#Sequence').append(div);
+                
+  }
 
   //TODO
 });
@@ -213,13 +224,64 @@ function getTitleImage(type) {
 </script>
 </head>
 <body class="result">
-<div id="up04" class="wrapper">
 
-    <nav class="top-bar">
+<nav class="top-bar">
       <ul>
         <li class="center"><img id="logo" src="images/logo.png" /></li>
       </ul>
     </nav>
+<div id="up04" class="wrapper" style="margin: -0px 69px 0 69px;">
+
+    <div id="wrapper-book" style="margin:36px auto 0 auto; ">
+
+<!--Index內容-->
+<div id="scroller" style="overflow:hidden;">
+<div id="share-tool">
+<!-- <ul>
+<li id="share-fb"><a href="#">share facebook</a></li>
+<li id="add-fav"><a href="#">add favorite</a></li>
+<li id="mail-share"><a href="#">mail sharing</a></li>
+</ul> -->
+<div id="rating" style="display:none;">
+<select class="rating" id="tmp"> 
+<option value="0">還好</option>
+<option value="1">普通</option>
+<option value="2">不錯</option>
+<option value="3">很好玩</option>
+<option value="4">必去景點!</option>
+</select>
+</div>
+</div>
+
+<div id="Sequence"></div>
+
+<div class="box col3 index-info">
+<div id="index-text">
+<!--<ul id="book-info">
+<li id="views"><em>614</em> Views</li>
+<li id="fav"><em>98</em> Favorites</li>
+<li id="reviews"><em>1238</em> Reviews</li>
+</ul>-->
+<h1><span style="font-size:52px;">My Dream Travel</span></h1>
+<p class="index-chapter-list" style="height: 100px;">靠著50音和勇氣，闖進美麗又特別的沖繩小島，經歷一場奇妙的旅程。靠著50音和勇氣，闖進美麗又特別的沖繩小島，經歷一場奇妙的旅程。靠著50音和勇氣，闖進美麗又特別的沖繩小島，經歷一場奇妙的旅程。靠著50音和勇氣，闖進美麗又特別的沖繩小島，經歷一場奇妙的旅程。靠著50音和勇氣，闖進美麗又特別的沖繩小島，經歷一場奇妙的旅程。靠著50音和勇氣，闖進美麗又特別的沖繩小島，經歷一場奇妙的旅程。靠著50音和勇氣，闖進美麗又特別的沖繩小島，經歷一場奇妙的旅程。</p>
+</div>
+
+</div>
+<div class="box col4 index-spot-info">
+<!--<div id="editor">
+<div id="avatar"><img src="image/avatar-editor.jpg"/></div>
+<p id="name">Lacost Ou-yang</p>
+<p id="follow"><a href="#">Follow</a></p>
+</div>
+<div id="traveler">
+<p id="title">Traveling with</p>
+<ul id="slider1">
+<li class="avatar"><img src="image/avatar-lacost.jpg"/><br/>Lacost</li>
+<li class="avatar"><img src="image/avatar-chihying.jpg"/><br/>Chih-Ying</li>
+</ul>
+</div>-->
+</div>
+<!--index end-->
 
   </div>
 </body>
