@@ -94,54 +94,30 @@
   if (('localStorage' in window) && window['localStorage'] !== null) {
 
     spots = JSON.parse(localStorage.getItem('photos'));
-    var spot, box, spot_title, spot_left_1, spot_right_1, spot_left_2, spot_rght_2;
+
+    var spot, type, el, photo, imageDiv;
 
     for(var idx = 0, len = spots.length; idx < len; idx++) {
       
       spot = spots[idx];
-      console.log('idx = ' + idx);
-      console.log(spot);
 
       for (var idx2 = 0, len2 = spot.types.length; idx2 < len2; idx2++) {
 
-        var type = spot.types[idx2];
+        type = spot.types[idx2];
 
-        var typeName = '';
-        switch(type.type) {
-          case 'hotel':
-            typeName = 'hotel';
-            break;
-          case 'food':
-            typeName = 'restaurant';
-            break;
-          case 'entertain':
-            typeName = 'entertain';
-            break;
-          case 'building':
-            typeName = 'museum';
-            break;
-          case 'shopping':
-            typeName = 'shopping';
-            break;
-          case 'scene':
-            typeName = 'outdoor';
-            break;
-        }
-
-        var el = $('<div id="place-' + idx + '-types-' + idx2 + '" style="margin:-150px 69px 0 69px; max-height:1000px;">' +
+        
+        el = $('<div id="place-' + idx + '-types-' + idx2 + '" style="margin:-150px 69px 0 69px; max-height:1000px;">' +
                        '<div style="background-color: red; width: 137px; height: 137px; position: relative; top: 480px; left: 550px; ' +
-                                   'z-index: 1; background: url(images/' +  typeName + '.png)">' +
+                                   'z-index: 1; background: url(images/' +  type.type + '.png)">' +
                    '</div>');
         $('body').append(el);  
 
-        console.log('idx2 = ' + idx2);
-        console.log(type);
-
         for (var idx3 = 0, len3 = type.photos.length; idx3 < len3; idx3++) {
 
-          var photo = type.photos[idx3];
+          photo = type.photos[idx3];
 
-          var imageDiv = '';
+          imageDiv = '';
+
           switch(idx3) {
               case 0:
                 imageDiv = '<div style="width: 618px; height: 412px; position: relative;">' +
@@ -174,12 +150,12 @@
     } // end of for
   }
 
-  console.log('xxx');
-  console.log(tempPhotos);
+  var div = '';
+
   for (var idx = 0, len = tempPhotos.length; idx < len; idx++) {
 
     if (idx > 4) return;
-    var div = '';
+
     switch(idx) {
       case 0:
         div = '<div class="box col1" style="width:618px; height:412px; overflow: hidden;">' +
@@ -214,12 +190,6 @@
 
   //TODO
 });
-
-function getTitleImage(type) {
-  if (type == 'hotel') {
-    return "hotel-img";
-  }
-}
 
 </script>
 </head>

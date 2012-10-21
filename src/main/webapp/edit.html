@@ -1088,7 +1088,7 @@ function loopTypes(key, item){
 
     item.photos.each(loopPhotos);
 
-    workingTypes[workingTypes.length] = {type: typeId2Word(key),  photos: workingPhotos};
+    workingTypes[workingTypes.length] = {type: typeId2IconWord(key),  photos: workingPhotos};
 
 }
 
@@ -1133,7 +1133,7 @@ function getSearchWord(searchText, searchType) {
   return rt;
 }
 
-function typeId2Word(typeId){
+function typeId2IconWord(typeId){
 
     var rt = '', typeId = parseInt(typeId.substring(5), 10);
 
@@ -1144,7 +1144,7 @@ function typeId2Word(typeId){
       break;
     // food
     case 2:
-      rt = 'food';
+      rt = 'restaurant';
       break;
     // entertain
     case 3:
@@ -1152,7 +1152,7 @@ function typeId2Word(typeId){
       break;
     // building
     case 4:
-      rt = 'building';
+      rt = 'museum';
       break;
     // shopping
     case 5:
@@ -1160,7 +1160,7 @@ function typeId2Word(typeId){
       break;
     // scene
     case 6:
-      rt = 'scene';
+      rt = 'outdoor';
       break;
   }
   
