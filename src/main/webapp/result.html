@@ -10,6 +10,16 @@
 <meta name="apple-mobile-web-app-capable" content="yes" />
 <title>TraveloFlickr | Explore The World</title>
 
+<style>
+.result {
+  width:100%;
+  height:100%;
+  background: url(../images/back_ground.jpg) no-repeat;
+  background-size: 100%;
+  background-attachment: fixed;
+}
+</style>
+
 <!-- Included CSS Files (Uncompressed) -->
   <!--
   <link rel="stylesheet" href="stylesheets/foundation.css">
@@ -86,36 +96,107 @@
     var spot, box, spot_title, spot_left_1, spot_right_1, spot_left_2, spot_rght_2;
 
     for(var idx = 0, len = spots.length; idx < len; idx++) {
+      
       spot = spots[idx];
+      console.log('idx = ' + idx);
+      console.log(spot);
 
-      if (spot) {
+      for (var idx2 = 0, len2 = spot.types.length; idx2 < len2; idx2++) {
 
-        box = $('<div class="box col1">').appendTo('#scroller');
+        var type = spot.types[idx2];
 
-        //box - title
-        //console.log(spot.type);
-        spot_title = $('<div class="spot-title ' + getTitleImage(spot.types[0].type) + '"></div>').appendTo(box);
+        var typeName = '';
+        switch(type.type) {
+          case 'hotel':
+            typeName = 'hotel';
+            break;
+          case 'food':
+            typeName = 'restaurant';
+            break;
+          case 'entertain':
+            typeName = 'entertain';
+            break;
+          case 'building':
+            typeName = 'museum';
+            break;
+          case 'shopping':
+            typeName = 'shopping';
+            break;
+          case 'scene':
+            typeName = 'outdoor';
+            break;
+        }
 
-        //box - left
-        spot_left_1 = $('<img class="boxleft"/>').attr('src', constructImageURL(spot.types[0].photos[0])).appendTo(box);
+        var el = $('<div id="place-' + idx + '-types-' + idx2 + '" style="margin: 69px;">' +
+                       '<div style="background-color: red; width: 137px; height: 137px; position: relative; top: 480px; left: 550px; ' +
+                                   'z-index: 1; background: url(images/' +  typeName + '.png)">' +
+                   '</div>');
+        $('body').append(el);  
 
-        //box - right
-        spot_right_1 = $('<img class="boxright"/>').attr('src', constructImageURL(spot.types[0].photos[1])).appendTo(box);
+        console.log('idx2 = ' + idx2);
+        console.log(type);
 
-        //box - left 2
-        spot_left_2 = $('<div class="map-day" />').tinyMap({
-          center: spot.keyword,
-          mapTypeControl:false,
-          scaleControl:false,
-          scrollwheel:false,
-          zoom:16,
-          marker: [{addr: spot.keyword, text: '', icon: 'images/map-pins.png'}]
-          }).appendTo(box);
+        for (var idx3 = 0, len3 = type.photos.length; idx3 < len3; idx3++) {
 
-        // box - map
+          var photo = type.photos[idx3];
 
-        //TODO
+          var imageDiv = '';
+          switch(idx3) {
+              case 0:
+                imageDiv = '<div style="width: 618px; height: 412px; position: relative;">' +
+                               '<img src="' +  constructImageURL(photo) + '" width="100%" height="100%"></img>' +
+                           '</div>';
+                break;
+              case 1:
+                imageDiv = '<div style="width: 618px; height: 412px; position: relative; left: 620px; top: -412px;">' +
+                               '<img src="' +  constructImageURL(photo) + '" width="100%" height="100%"></img>' +
+                           '</div>';
+                break;
+              case 2:
+                imageDiv = '<div style="width: 618px; height: 412px; position: relative; top: -410px;">' +
+                               '<img src="' +  constructImageURL(photo) + '" width="100%" height="100%"></img>' +
+                           '</div>';
+                break;
+              case 3:
+                imageDiv = '<div style="width: 618px; height: 412px; position: relative; top: -822px; left: 620px;">' +
+                               '<img src="' +  constructImageURL(photo) + '" width="100%" height="100%"></img>' +
+                           '</div>';
+                break;
+          }
+
+          $('#place-' + idx + '-types-' + idx2).append(imageDiv);
+
+        }
+
       }
+
+      
+
+      // if (spot) {
+
+      //   box = $('<div class="box col1">').appendTo('#scroller');
+
+      //   //box - title
+      //   //console.log(spot.type);
+      //   spot_title = $('<div class="spot-title ' + getTitleImage(spot.types[0].type) + '"></div>').appendTo(box);
+
+      //   //box - left
+      //   spot_left_1 = $('<img class="boxleft"/>').attr('src', constructImageURL(spot.types[0].photos[0])).appendTo(box);
+
+      //   //box - right
+      //   spot_right_1 = $('<img class="boxright"/>').attr('src', constructImageURL(spot.types[0].photos[1])).appendTo(box);
+
+      //   //box - left 2
+        // spot_left_2 = $('<div class="map-day" />').tinyMap({
+        //   center: spot.keyword,
+        //   mapTypeControl:false,
+        //   scaleControl:false,
+        //   scrollwheel:false,
+        //   zoom:16,
+        //   marker: [{addr: spot.keyword, text: '', icon: 'images/map-pins.png'}]
+        //   }).appendTo(box);
+
+      // }
     } // end of for
   }
 
@@ -132,8 +213,7 @@ function getTitleImage(type) {
 </script>
 </head>
 <body class="result">
-
-  <div id="up04" class="wrapper">
+<div id="up04" class="wrapper">
 
     <nav class="top-bar">
       <ul>
@@ -141,18 +221,6 @@ function getTitleImage(type) {
       </ul>
     </nav>
 
-    <div id="wrapper-book" style="margin:36px auto 0 auto;">
-
-       <div id="scroller" style="overflow:hidden;">
-
-
-       </div><!-- end of scroller -->
-    </div> <!-- end of wrapper-book -->
-
-
   </div>
-
-
-
 </body>
 </html>
