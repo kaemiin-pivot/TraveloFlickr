@@ -163,12 +163,12 @@
               '</div>';
         break;
       case 1:
-        div = '<div class="box col2" style="width:308px; height:308px; overflow: hidden;">' +
+        div = '<div class="box col2" style="width:308px; height:205px; overflow: hidden;">' +
                   '<p><a href="#day1"><img src="' + tempPhotos[idx] + '" width="100%" height="100%"/>' +
               '</div>';
         break;
       case 2:
-        div = '<div class="box col2" style="width:308px; height:308px; overflow: hidden;">' +
+        div = '<div class="box col2" style="width:308px; height:205px; overflow: hidden;">' +
                   '<p><a href="#day2"><img src="' + tempPhotos[idx] + '" width="100%" height="100%"/>' +
               '</div>';
         break;
@@ -176,6 +176,7 @@
         div = '<div class="box col2" style="width:308px; height:308px; overflow: hidden;">' +
                   '<p><a href="#day3"><img src="' + tempPhotos[idx] + '" width="100%" height="100%"/>' +
               '</div>';
+
         break;
       case 4:
         div = '<div class="box col2" style="width:308px; height:308px; overflow: hidden;">' +
@@ -185,6 +186,8 @@
     }
     
     $('#Sequence').append(div);
+
+
                 
   }
 
@@ -225,7 +228,7 @@
 
 <div id="Sequence"></div>
 
-<div class="box col3 index-info">
+<div class="box col3 index-info" style="border:0px;">
 <div id="index-text" style="height: 180px;">
 <!--<ul id="book-info">
 <li id="views"><em>614</em> Views</li>
