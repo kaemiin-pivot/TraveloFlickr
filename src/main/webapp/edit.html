@@ -1172,6 +1172,8 @@ function search(searchType) {
   $('#photoList').empty();
 
   var searchText;
+
+  console.log(arySearch)
   
   for (var idx = 0, len = arySearch.length; idx < len; idx++) {
 
@@ -1267,7 +1269,7 @@ function loadPhotos(idx, searchText, searchType) {
                                            '<ul id="slider' + idx + '" class="multiple" style="width: 999999px; position: relative; left: -760px; ">' +
                                            '</ul>' +
                                          '</div>');
-
+                      console.log(searchText)
                       $('#photoList').append(imageWrapper);
 
                       $.each(data.photos.photo, function(i, item) {

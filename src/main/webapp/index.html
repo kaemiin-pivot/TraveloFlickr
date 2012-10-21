@@ -143,18 +143,18 @@ function getPhotos(){
                  
                  temp[temp.length] = places[idx];
 
-                 codeAddress(temp[temp.length - 1]);
+                 // codeAddress(temp[temp.length - 1]);
               }
           }
 
           
-          setTimeout(function() {
+          // setTimeout(function() {
                       
                         localStorage.setItem('locations', JSON.stringify(temp));
 
                         window.location.href = "edit.html";
 
-                 }, 1000);
+                 // }, 1000);
       }
     }
 
